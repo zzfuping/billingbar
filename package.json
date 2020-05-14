@@ -23,6 +23,7 @@
     "build": "node build/build.js wx"
   },
   "dependencies": {
+    "@vant/weapp": "^1.3.0",
     "mpvue": "^2.0.0",
     "vuex": "^3.0.1"
   },
