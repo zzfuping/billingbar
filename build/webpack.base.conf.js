@@ -46,6 +46,18 @@ let baseWebpackConfig = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue': 'mpvue',
+      "@router": resolve("src/router"),
+      "@store": resolve("src/store"),
+      "@utils": resolve("src/utils"),
+      "@config": resolve("src/config"),
+      "@libs": resolve("src/libs"),
+      "@errors": resolve("src/libs/errors"),
+      "@api": resolve("src/api"),
+      "@assets": resolve("src/assets"),
+      "@css": resolve("src/assets/css"),
+      "@images": resolve("src/assets/images"),
+      "@components": resolve("src/components"),
+      "@pages": resolve("src/pages"),
       '@': resolve('src')
     },
     symlinks: false,
