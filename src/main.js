@@ -4,6 +4,10 @@ import $store from "@store"
 import { $router, parseRoute } from "@router"
 import '@utils/index'
 
+// import "@vant/weapp/common/index.wxss"
+import "@css/vant-weapp-theme.wxss"
+import "@assets/iconfont/iconfont.wxss"
+
 Vue.config.productionTip = false
 App.mpType = 'app'
 
