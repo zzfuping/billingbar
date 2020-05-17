@@ -13,9 +13,11 @@ fly.interceptors.request.use((request) => {
   if (request.login && !session) {
     return Promise.reject(new Error("未登录"));
   }
+
   //给需要登录的请求添加 Token
   if (request.login) {
-    headers["access-token"] = session
+    request.headers["access-token"] = session
+    request.body["session"] = session
   }
 
   return request
@@ -42,6 +44,7 @@ fly.interceptors.response.use(
 function baseRequest(options) {
   const { url, params, data, login, ...option } = options
   return fly.request(url, params || data, {
+    login,
     ...option
   }).then(res => {
     const data = res.data || {};
@@ -49,7 +52,7 @@ function baseRequest(options) {
       return Promise.reject({ msg: "请求失败", res, data });
 
     if (data.code === API_CODE.OK) {
-      return Promise.resolve(data, res);
+      return Promise.resolve(data.data, res);
     } else {
       return Promise.reject({ msg: res.data.msg, res, data });
     }
@@ -65,8 +68,9 @@ const request = ["post", "put", "patch"].reduce((request, method) => {
      * @returns {AxiosPromise}
      */
     request[method] = (url, data = {}, options = {}) => {
+      options = Object.assign({}, defaultOpt, options)
       return baseRequest(
-        Object.assign({ url, data, method }, defaultOpt, options)
+        Object.assign({ url, data, method }, options)
       )
     }
     return request

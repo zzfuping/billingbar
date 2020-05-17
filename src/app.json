@@ -5,14 +5,18 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarBackgroundColor": "#FBDCDA",
+    "navigationBarTitleText": "记账吧",
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
+    "van-loading": "@vant/weapp/loading/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-icon": "@vant/weapp/icon/index",
     "van-button": "@vant/weapp/button/index",
     "van-tabbar": "@vant/weapp/tabbar/index",
-    "van-panel": "@vant/weapp/panel/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-swipe-cell": "@vant/weapp/swipe-cell/index"

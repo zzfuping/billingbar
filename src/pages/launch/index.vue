@@ -47,4 +47,8 @@ export default {
 </script>
 
 <style>
+.tab-content {
+  min-height: 100vh;
+  background-color: rgb(252, 247, 247);
+}
 </style>

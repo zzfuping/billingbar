@@ -1,6 +1,6 @@
 <template>
-  <div>
-    loading...
+  <div class="container">
+    <van-loading type="spinner" color="#999">加载中...</van-loading>
   </div>
 </template>
 
@@ -39,4 +39,10 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    height: 100vh;
+    padding-top: 40vh;
+    text-align: center;
+    background-color: #FBDCDA;
+}
 </style>
