@@ -11,6 +11,7 @@
   },
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
     "van-panel": "@vant/weapp/panel/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",

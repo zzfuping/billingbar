@@ -1,66 +1,50 @@
 <template>
-  <div>
-      <block v-for="(group, groupIndex) in orderGroups" :key="groupIndex">
-        <van-panel class="order-panel" :class="group.totalType"
-                   :title="group.date" 
-                   :status="group.totalType + ' ' + group.total">
-            <view>
-                <block v-for="(order, orderIndex) in group.orders" :key="orderIndex">                    
-                    <van-swipe-cell right-width="65">
-                        <van-cell-group>
-                            <van-cell :icon="orderTypes[order.type].icon">
-                                <span slot="title">{{orderTypes[order.type].name}}</span>
-                                <span class="order-date-money">{{order.money}}</span>
-                            </van-cell>
-                        </van-cell-group>
-                        <div slot="right" class="order-btn-delete">删除</div>
-                    </van-swipe-cell>
-                </block>
-            </view>
-        </van-panel>
+  <div class="container">
+    <div class="tab-content">
+      <div v-show="activeTab == 0">
+        <bill-page></bill-page>
+      </div>
+      <div v-show="activeTab == 1">
+        圈子
+      </div>
+      <div v-show="activeTab == 2">
+        我的
+      </div>
+    </div>
+
+    <van-tabbar :active="activeTab">
+      <block v-for="(item, tabIndex) in tabs" :key="tabIndex">
+        <van-tabbar-item :icon="item.icon" @click="changeTab(tabIndex)">{{item.label}}</van-tabbar-item>
       </block>
+    </van-tabbar>
+
   </div>
 </template>
 
 <script>
+import BillPage from '@pages/bill'
+
 export default {
+  components: {
+    BillPage,
+  },
     data() {
         return {
-            orderTypes: {},
-            orderGroups: []
+            activeTab: 0,
+            tabs: [
+                {index: 0, icon: 'paid', label: '账单'},
+                {index: 1, icon: 'user-circle-o', label: '圈子'},
+                {index: 2, icon: 'user-o', label: '我的'},
+            ]
         }
     },
-    mounted() {
-        this.orderTypes = {
-            1: {icon: 'bag', name: '餐饮'},
-            2: {icon: 'location-o', name: '交通'}
+    methods: {
+        changeTab(tabIndex) {
+            this.activeTab = tabIndex
         }
-        this.orderGroups = [
-            {
-                date: '05月14日', total: '78.00', totalType: '支出', orders: [
-                    {id: 1, type: 1, money: '18.00', desc: '', group: ''},
-                    {id: 2, type: 2, money: '60.00', desc: '4月份', group: ''},
-                ]
-            },
-            {
-                date: '05月13日', total: '50.00', totalType: '支出', orders: [
-                    {id: 11, type: 1, money: '40.00', desc: '地铁充值', group: ''},
-                    {id: 12, type: 2, money: '10.00', desc: '打车', group: ''},
-                ]
-            },
-        ]
     }
 }
 </script>
 
 <style>
-.order-panel {
-    margin: 4px 0;
-}
-.order-btn-delete {
-    width: 100%;
-    height: 100%;
-    color: #fff;
-    background-color: #e45340;
-}
 </style>
