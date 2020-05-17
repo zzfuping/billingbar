@@ -1,5 +1,5 @@
 import Fly from "flyio/dist/npm/wx"
-import $store from "@store";
+import Auth from '@libs/auth'
 import { API_ROOT, API_CODE } from '@config'
 
 const fly = new Fly()
@@ -9,13 +9,13 @@ const defaultOpt = { login: true }
 
 //添加请求拦截器
 fly.interceptors.request.use((request) => {
-  const token = $store.state.token
-  if (request.login && !token) {
+  const session = Auth.Session.get()
+  if (request.login && !session) {
     return Promise.reject(new Error("未登录"));
   }
   //给需要登录的请求添加 Token
   if (request.login) {
-    headers["Authorization"] = "Bearer " + token
+    headers["access-token"] = session
   }
 
   return request
@@ -48,10 +48,7 @@ function baseRequest(options) {
     if (res.status !== 200)
       return Promise.reject({ msg: "请求失败", res, data });
 
-    if ([410000, 410001, 410002].indexOf(data.status) !== -1) {
-      toLogin();
-      return Promise.reject({ msg: res.data.msg, res, data, toLogin: true });
-    } else if (data.code === API_CODE.OK) {
+    if (data.code === API_CODE.OK) {
       return Promise.resolve(data, res);
     } else {
       return Promise.reject({ msg: res.data.msg, res, data });

@@ -3,6 +3,7 @@ import consts from './consts'
 import { LoginError } from '@errors'
 import { promisify } from '@utils/promisify'
 import { wxappAuth } from '@api/user'
+import { API_CODE } from '@config'
 
 const wxLogin = promisify(wx.login)
 const defaultOptions = {
@@ -43,23 +44,23 @@ export const login = options => {
   
   // 连接服务器登录
   return getWxLoginResult().then(loginResult => wxappAuth({
-    code: loginResult.code,
+    wxCode: loginResult.code,
   })).catch((err) => {
     let error = new LoginError(consts.ERR_LOGIN_FAILED, '登录失败，可能是网络错误或者服务器发生异常')
     error.detail = err
     return Promise.reject(error)
-  }).then(result => {
-    const data = result.data
-    if (!data || data.code !== 0 || !data.data) {
+  }).then(data => {
+    console.log('login ok', data)
+    if (!data || !data.code || !data.data) {
       return Promise.reject(new LoginError(consts.ERR_LOGIN_FAILED, `响应错误，${JSON.stringify(data)}`))
     }
 
     const res = data.data
-    if (!res || !res.token) {
+    if (!res || !res.session) {
       return Promise.reject(new LoginError(consts.ERR_LOGIN_SESSION_NOT_RECEIVED, `登录失败[${data.error}] ${data.message}`))
     }
 
-    Session.set(res.token)
+    Session.set(res.session)
     return res
   })
 }
