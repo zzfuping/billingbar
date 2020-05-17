@@ -41,7 +41,7 @@ export default {
 <style scoped>
 .container {
     height: 100vh;
-    padding-top: 40vh;
+    padding-top: calc(50vh - 20px);
     text-align: center;
     background-color: #FBDCDA;
 }

@@ -52,7 +52,7 @@ function baseRequest(options) {
       return Promise.reject({ msg: "请求失败", res, data });
 
     if (data.code === API_CODE.OK) {
-      return Promise.resolve(data.data, res);
+      return Promise.resolve(data, res);
     } else {
       return Promise.reject({ msg: res.data.msg, res, data });
     }

@@ -10,6 +10,7 @@ export default {
     font-size: 14px;
 }
 .page {
+    min-height: 100vh;
     background-color: rgb(252, 247, 247);
 }
 </style>

@@ -28,7 +28,7 @@
     <block v-for="(group, groupIndex) in orderSource.rows" :key="groupIndex">
         <div class="order-group">
             <van-cell :border="false" icon="calender-o" class="order-group-title" 
-                      :title="group.date">{{order.billType == 'in' ? '收入' : '支出'}} {{group.total}}</van-cell>
+                      :title="group.date">支出 {{group.total}}</van-cell>
             <block v-for="(order, orderIndex) in group.orders" :key="orderIndex">                    
                 <van-swipe-cell right-width="65">
                     <van-cell-group :border="false">
@@ -75,9 +75,9 @@ export default {
         loadTypes() {
             let $self = this
             // load order types
-            getAllBookType().then(data => {
+            getAllBookType().then(req => {
                 let types = {}
-                data.forEach(item => {
+                req.data.forEach(item => {
                     types[item.id] = {icon: item.avatorKey, name: item.name}
                 })
                 $self.orderTypes = types
