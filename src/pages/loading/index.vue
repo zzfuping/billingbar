@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" :style="{backgroundColor: theme.bgColor}">
     <van-loading type="spinner" color="#999">加载中...</van-loading>
   </div>
 </template>
@@ -30,6 +30,11 @@ export default {
         })
       })
   },
+  computed: {
+    theme() {
+      return this.$store.state.theme
+    }
+  },
   methods: {
     toLaunch() {
       this.$router.replace({path: "/pages/launch/main"})
@@ -43,6 +48,5 @@ export default {
     height: 100vh;
     padding-top: calc(50vh - 20px);
     text-align: center;
-    background-color: #FBDCDA;
 }
 </style>

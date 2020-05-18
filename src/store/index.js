@@ -5,6 +5,10 @@ Vue.use(Vuex)
 
 const $store = new Vuex.Store({
     state: {
+        theme: {
+            color: '#FBDCDA',
+            bgColor: '#FBDCDA',
+        }
     },
     mutations: {
     },

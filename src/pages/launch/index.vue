@@ -36,10 +36,6 @@ export default {
   },
     data() {
         return {
-          theme: {
-            color: '#333',
-            bgColor: '#FBDCDA',
-          },
           activeTab: 0,
           tabs: [
               {index: 0, icon: 'paid', label: '账单'},
@@ -47,6 +43,11 @@ export default {
               {index: 2, icon: 'user-o', label: '我的'},
           ]
         }
+    },
+    computed: {
+      theme() {
+        return this.$store.state.theme
+      }
     },
     methods: {
         changeTab(tabIndex) {

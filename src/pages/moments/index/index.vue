@@ -2,12 +2,14 @@
   <div class="page">
       <block v-for="(moment, momentIndex) in moments" :key="momentIndex">
           <van-cell :title="moment.name">
-              <van-icon slot="right-icon" name="add" color="orange" size="20" />
+              <van-icon slot="right-icon" name="add" size="20" :color="theme.bgColor" @click="addBill" />
           </van-cell>
       </block>
 
-      <div class="footer-btn">
-        <van-button round block size="large" icon="plus" @click="addMoment"></van-button>
+      <div class="bottom-btns"  @click="addMoment">
+        <div class="bottom-btn" >
+            <van-icon name="plus" size="28" />
+        </div>
       </div>
   </div>
 </template>
@@ -28,19 +30,23 @@ export default {
         }
     },
     mounted() {
+        console.log('ss')
         this.loadMoments()
+    },
+    computed: {
+      theme() {
+        return this.$store.state.theme
+      }
     },
     methods: {
         loadMoments() {
             let $self = this
             getMomentList().then(res => {
                 $self.moments = res.data
-                $self.moments.push({
-                    id: 2,
-                    avatorKey: 'aim',
-                    name: '测试圈子'
-                })
             })
+        },
+        addBill() {
+            this.$router.push({path: "/pages/bill/create/main"})
         },
         addMoment() {
             this.$router.push({path: "/pages/moments/create/main"})
@@ -50,9 +56,15 @@ export default {
 </script>
 
 <style>
-.footer-btn {
+.bottom-btns {
     padding: 8px;
     background: #fff;
-    --button-round-border-radius: 8px;
+    text-align: center;
+}
+.bottom-btn {
+    color: #999;
+    border: 1px dashed #eaeaea;
+    border-radius: 6px;
+    padding: 4px;
 }
 </style>

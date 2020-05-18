@@ -17,7 +17,6 @@ fly.interceptors.request.use((request) => {
   //给需要登录的请求添加 Token
   if (request.login) {
     request.headers["access-token"] = session
-    request.body["session"] = session
   }
 
   return request
