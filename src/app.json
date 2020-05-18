@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/loading/main",
-    "pages/launch/main"
+    "pages/launch/main",
+    "pages/moments/create/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
