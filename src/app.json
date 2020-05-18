@@ -2,7 +2,8 @@
   "pages": [
     "pages/loading/main",
     "pages/launch/main",
-    "pages/bill/create/main"
+    "pages/bill/create/main",
+    "pages/moments/create/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

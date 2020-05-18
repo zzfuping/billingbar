@@ -5,7 +5,7 @@
         <bill-page></bill-page>
       </div>
       <div v-show="activeTab == 1">
-        圈子
+        <moments-page></moments-page>
       </div>
       <div v-show="activeTab == 2">
         我的
@@ -27,10 +27,12 @@
 
 <script>
 import BillPage from '@pages/bill/index'
+import MomentsPage from '@pages/moments/index'
 
 export default {
   components: {
     BillPage,
+    MomentsPage,
   },
     data() {
         return {
