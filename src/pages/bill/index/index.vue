@@ -36,7 +36,10 @@
                                   :custom-class="'order-group-item-' + order.billType"
                                   :icon="orderTypes[order.type] ? orderTypes[order.type].icon : ''"
                                   :label="order.desc">
-                            <span slot="title">{{orderTypes[order.type] ? orderTypes[order.type].name : ''}}</span>
+                            <div slot="title" class="order-item-title">
+                                <span>{{orderTypes[order.type] ? orderTypes[order.type].name : ''}}</span>
+                                <van-tag round plain :color="theme.color" v-if="order.group">{{order.group}}</van-tag>
+                            </div>
                             <span class="order-item-money">{{order.money}}</span>
                         </van-cell>
                     </van-cell-group>
@@ -70,6 +73,11 @@ export default {
     mounted() {
         this.loadTypes()
         this.loadOrder()
+    },
+    computed: {
+      theme() {
+        return this.$store.state.theme
+      }
     },
     methods: {
         loadTypes() {
@@ -111,14 +119,14 @@ export default {
                     },
                     {
                         date: '05月14日', total: '78.00', orders: [
-                            {id: 1, type: 1, money: '18.00', billType: 'out', desc: '', group: ''},
+                            {id: 1, type: 1, money: '18.00', billType: 'out', desc: '', group: 'ttgroup'},
                             {id: 2, type: 35, money: '60.00', billType: 'out', desc: '4月份', group: ''},
                             {id: 3, type: 3, money: '100.00', billType: 'out', desc: '', group: ''},
                         ]
                     },
                     {
                         date: '05月13日', total: '50.00', orders: [
-                            {id: 11, type: 1, money: '40.00', billType: 'out', desc: '地铁充值', group: ''},
+                            {id: 11, type: 1, money: '40.00', billType: 'out', desc: '地铁充值', group: 'ttgroup'},
                             {id: 12, type: 2, money: '10.00', billType: 'out', desc: '打车', group: ''},
                         ]
                     },
@@ -152,15 +160,18 @@ export default {
 .order-group {
     padding-bottom: 6px;
     --cell-icon-size: 28px;
-    --cell-large-title-font-size: 14px;
+    --cell-large-title-font-size: 16px;
     --cell-large-value-font-size: 20px;
-    --cell-large-label-font-size: 11px;
+    --cell-large-label-font-size: 12px;
 }
 .order-group-title {
     --cell-icon-size: 14px;
-    --cell-font-size: 11px;
+    --cell-font-size: 12px;
     --cell-vertical-padding: 2px;
     --cell-text-color: #999;
+}
+.order-item-title > span {
+    margin-right: 6px;
 }
 .order-group-item-out {
     --cell-value-color: rgb(255, 136, 0);

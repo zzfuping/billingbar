@@ -30,10 +30,10 @@ import BillPage from '@pages/bill/index'
 import MomentsPage from '@pages/moments/index'
 
 export default {
-  components: {
-    BillPage,
-    MomentsPage,
-  },
+    components: {
+      BillPage,
+      MomentsPage,
+    },
     data() {
         return {
           activeTab: 0,
@@ -69,7 +69,7 @@ export default {
 .buttom-btn {
   position: absolute;
   left: calc(50vw - 27px);
-  bottom: 50px;
+  bottom: 60px;
   border-radius: 30px;
   background-color: transparent;
 }

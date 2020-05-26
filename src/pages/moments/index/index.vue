@@ -1,7 +1,7 @@
 <template>
   <div class="page">
       <block v-for="(moment, momentIndex) in moments" :key="momentIndex">
-          <van-cell :title="moment.name">
+          <van-cell :title="moment.name" @click="goDetail(moment)">
               <van-icon slot="right-icon" name="add" size="20" :color="theme.bgColor" @click="addBill" />
           </van-cell>
       </block>
@@ -30,7 +30,6 @@ export default {
         }
     },
     mounted() {
-        console.log('ss')
         this.loadMoments()
     },
     computed: {
@@ -50,6 +49,9 @@ export default {
         },
         addMoment() {
             this.$router.push({path: "/pages/moments/create/main"})
+        },
+        goDetail(moment) {            
+            this.$router.push({path: "/pages/moments/info/main", query: { ...moment }})
         }
     }
 }

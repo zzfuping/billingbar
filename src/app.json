@@ -3,6 +3,7 @@
     "pages/loading/main",
     "pages/launch/main",
     "pages/bill/create/main",
+    "pages/moments/info/main",
     "pages/moments/create/main"
   ],
   "window": {
@@ -17,11 +18,17 @@
     "van-col": "@vant/weapp/col/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-button": "@vant/weapp/button/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-tab": "@vant/weapp/tab/index",
     "van-tabbar": "@vant/weapp/tabbar/index",
     "van-tabbar-item": "@vant/weapp/tabbar-item/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-collapse": "@vant/weapp/collapse/index",
+    "van-collapse-item": "@vant/weapp/collapse-item/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-nav-bar": "@vant/weapp/nav-bar/index",
     "van-field": "@vant/weapp/field/index"
   }
 }
